@@ -20,7 +20,7 @@ class PostList(ListView):
 
 class PostDetail(DetailView):
     model = Post
-    template_name = 'myblog/single_post_page.html'
+    #template_name = 'myblog/single_post_page.html'
 # def single_post_pages(request, pk):
 #     post = Post.objects.get(pk=pk)
 
