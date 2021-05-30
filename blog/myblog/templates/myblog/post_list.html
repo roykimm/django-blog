@@ -40,7 +40,9 @@
             <div class="row">
                 <!-- Blog entries-->
                 
-                <div class="col-lg-8">
+                <div class="col-lg-8" id="main-area">
+                    <h1>Blog</h1>
+                    {% if post_list.exists %}
                     {% for p in post_list %}
                     <div class="card mb-4">
                         {% if p.head_image %}
@@ -62,6 +64,10 @@
                         </div>
                     </div>
                     {% endfor %}
+
+                    {% else %}
+                        <h3>아직 게시물이 없습니다.</h3>
+                    {% endif %}
                 </div>
                 
                 <!-- Side widgets-->
