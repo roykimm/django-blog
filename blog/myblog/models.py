@@ -7,6 +7,8 @@ class Post(models.Model):
 
     head_image = models.ImageField(
         upload_to='myblog/images/%Y/%m/%d/', blank=True)
+    file_upload = models.FileField(
+        upload_to='myblog/files/%Y/%m/%d', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
