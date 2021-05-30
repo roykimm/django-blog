@@ -30,7 +30,7 @@
         </div>
     </nav>
     <!-- Page content-->
-    <div class="container">
+    <div class="container" id="post_detail_content">
         <div class="row">
             <div class="col-lg-8">
                 <h1 class="mt-4">{{post.title}}</h1>
@@ -40,7 +40,7 @@
                 <hr>
 
                 <p>{{post.created_at}}</p>
-                <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+                <img class="img-fluid rounded" src="{{ post.head_image.url}}" alt="">
                 <hr>
                 <p>{{post.content}}</p>
             </div>
