@@ -10,3 +10,13 @@ def index(request):
         'myblog/index.html',
         {'posts': posts}
     )
+
+
+def single_post_pages(request, pk):
+    post = Post.objects.get(pk=pk)
+
+    return render(
+        request,
+        'myblog/single_post_page.html',
+        {'post': post}
+    )
