@@ -26,6 +26,25 @@ class PostList(ListView):
 #         {'posts': posts}
 #     )
 
+def category_page(request, slug):
+
+    if slug == 'no_category':
+        category = '미분류'
+        post_list = Post.objects.filter(category=None)
+    else :
+        category = Category.objects.get(slug=slug)
+        post_list = Post.objects.filter(category=category)
+
+    return render(
+        request,
+        'myblog/post_list.html',
+        {
+            'post_list': post_list,
+            'categories': Category.objects.all(),
+            'no_category_post_count' : Post.objects.filter(category=None).count(),
+            'category': category,
+        }
+    )
 
 class PostDetail(DetailView):
     model = Post
@@ -46,3 +65,4 @@ class PostDetail(DetailView):
 #         'myblog/single_post_page.html',
 #         {'post': post}
 #     )
+
