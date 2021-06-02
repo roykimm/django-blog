@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Post, Category, Tag
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 
 class PostCreate(LoginRequiredMixin, CreateView):   # 로그인 했을 때만 보이게 하기 LoginRequiredMixin
     model = Post
@@ -14,6 +15,19 @@ class PostCreate(LoginRequiredMixin, CreateView):   # 로그인 했을 때만 �
             return super(PostCreate, self).form_valid(form)
         else :
             return redirect('/blog/')
+
+class PostUpdate(LoginRequiredMixin, UpdateView):
+    model = Post
+    fields = ['title','hook_text','content','head_image', 'file_upload', 'category','tags']
+
+    template_name = 'myblog/post_update_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user == self.get_object().author:
+            return super(PostUpdate, self).dispatch(request, *args, **kwargs)
+        else :
+            raise PermissionDenied
+            # 이렇게 해두면 권한이 없는 방문자가 타인의 포스트를 수정하려 할때 403 오류메시지를 나타냅니다.
 
 class PostList(ListView):
     model = Post
