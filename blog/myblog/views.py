@@ -3,18 +3,39 @@ from .models import Post, Category, Tag
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
+from django.utils.text import slugify
 
 class PostCreate(LoginRequiredMixin, CreateView):   # 로그인 했을 때만 보이게 하기 LoginRequiredMixin
     model = Post
-    fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category']
+    fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category'] #'tags'
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
         current_user = self.request.user
         if current_user.is_authenticated:
             form.instance.author = current_user
-            return super(PostCreate, self).form_valid(form)
+            response = super(PostCreate, self).form_valid(form)
+
+            tags_str = self.request.POST.get('tags_str')
+            if(tags_str):
+                tags_str = tags_str.strip()
+
+                tags_str = tags_str.replace(',',';')
+                tags_list = tags_str.split(';')
+
+                for t in tags_list:
+                    t = t.strip()
+                    tag, is_tag_created = Tag.objects.get_or_create(name=t)
+                    if is_tag_created:
+                        tag.slug = slugify(t, allow_unicode=True)
+                        tag.save()
+                    self.object.tags.add(tag)
+            return response
+            #return super(PostCreate, self).form_valid(form)
         else :
-            return redirect('/blog/')
+            return redirect('/myblog/')
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
