@@ -13,7 +13,7 @@ class PostCreate(LoginRequiredMixin, CreateView):
             form.instance.author = current_user
             return super(PostCreate, self).form_valid(form)
         else :
-            return redirect('/blog/')
+            return redirect('/myblog/')
 
 class PostList(ListView):
     model = Post
