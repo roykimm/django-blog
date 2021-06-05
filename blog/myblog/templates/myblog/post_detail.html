@@ -32,7 +32,7 @@
         <img class="img-fluid rounded" src="https://picsum.photos/seed/{{ post.id}}/800/200" alt="random_image" >
         {% endif %}
         <hr>
-        <p>{{post.content}}</p>
+        <p>{{post.get_content_markdown | safe }}</p> <!--safe도 함께 입력해 html 익스케이핑 방지하는 필터-->
 
         {% if post.tags.exists %}
             <i class="fas fa-tags"></i>

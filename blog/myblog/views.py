@@ -79,12 +79,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
         if request.user.is_authenticated and request.user == self.get_object().author:
             return super(PostUpdate, self).dispatch(request, *args, **kwargs)
         else :
-<<<<<<< HEAD
-            return redirect('/myblog/')
-=======
             raise PermissionDenied
-            # 이렇게 해두면 권한이 없는 방문자가 타인의 포스트를 수정하려 할때 403 오류메시지를 나타냅니다.
->>>>>>> 175ca25feb16c584967b5f4867bd9a6dc12409a9
 
 class PostList(ListView):
     model = Post
