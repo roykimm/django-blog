@@ -4,3 +4,5 @@ db.sqlite3
 migrations/
 __pycache__/
 _media/
+.env.prod
+.env.prod.db
