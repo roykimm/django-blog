@@ -1,7 +1,7 @@
 {% load socialaccount %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="/">Do It Django</a>
+        <a class="navbar-brand" href="/">Gobella!</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,8 +22,8 @@
                 {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {% if user.socialaccount_set.all.first.get_avatar_url %}
-                                <img class="rounded-circle" width="25px" src="{{ user.socialaccount_set.all.first.get_avatar_url }}" alt="">
+                            {% if user.socialaccount_set.all.0.get_avatar_url %}
+                                <img class="rounded-circle" width="25px" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="">
                             {% else %}
                                 <img class="rounded-circle" src="https://api.adorable.io/avatars/25/{{ user.username }}.png" alt="">
                             {% endif %}
