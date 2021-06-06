@@ -1,20 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>김명훈입니다.</title>
-</head>
-<body>
-    <nav>
-        <a href="/myblog/">myblog</a>
-        <a href="/about_me/">About Me</a>
-    </nav>
+{% load static %}
+<html lang="ko">
+    <head> 
+        <meta charset="UTF-8">
+        <title>Do it Django</title>
+        
+        <link rel="stylesheet" href="{% static 'myblog/bootstrap/bootstrap.min.css' %}" media="screen">
+        <link rel="stylesheet" href="{% static 'single_pages/css/landing.css' %}" media="screen">
+        <script src="https://kit.fontawesome.com/be4ab3cd29.js" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+    {% include 'myblog/navbar.html'%}
 
-    <h1>안녕하세요 김명훈입니다.</h1>
-    <h2>대문페이지</h2>
-    <h3>아직 만들지 않음</h3>
+    <section>
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-6 text-light">
+                    <h1 class="mt-5">Do it Django</h1>
+                    <p>블로그 사이트</p>
+                </div> 
+                <div class="col-lg-5 mt-5">
+                    <h2 class="text-light">Blog - Recent posts</h2>
+                    {% for post in recent_posts%}
+                    <div class="card mt-1">
+                        <div class="card-body">
+                            <h6><a href="{{ post.get_absolute_url }}" class="text-decoration-none text-dark">{{ post.title }}</a></h6>
+                            <span class="badge bg-pill bg-light float-right text-dark">
+                                <img class="mr-1 rounded-circle" width="20px" src="{{ post.get_avatar_url}}" alt="{{ post.author }}"> 
+                                {{ post.author.username }}&nbsp;&nbsp;{{ post.created_at }}
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
     
-</body>
+    <div class="fixed-bottom">
+        {% include 'myblog/footer.html' %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    </body>
 </html>
