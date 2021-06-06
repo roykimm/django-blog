@@ -1,20 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>개발자 김명훈입니다.</title>
-</head>
-<body>
-    <nav>
-        <a href="/myblog/">myblog</a>
-        <a href="/about_me/">About Me</a>
-    </nav>
+{% load static %}
+<html lang="ko">
+    <head> 
+        <meta charset="UTF-8">
+        <title>About 김명훈</title>
+        
+        <link rel="stylesheet" href="{% static 'myblog/bootstrap/bootstrap.min.css' %}" media="screen">
+        <link rel="stylesheet" href="{% static 'single_pages/css/about_me.css' %}" media="screen">
+        <script src="https://kit.fontawesome.com/be4ab3cd29.js" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+    {% include 'myblog/navbar.html'%}
 
-    <h1>안녕하세요 김명훈입니다.</h1>
-    <h2>이력</h2>
-    <h2>Portfolio</h2>
-    <h3>아직 공사중입니다.</h3>
-</body>
+    <section> 
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>안녕하세요. 김명훈 입니다.</h1>
+                    <br />
+                    <p class="lead">
+                        운동과 컴퓨터를 좋아합니다.<br/>
+                        컴퓨터로 돈을 벌고, 퇴근 후에는 운동을 하거나 책을쓰면서 지냅니다.
+                    </p>
+                    <ul>
+                        <li>Work Experience<li>
+                        <ul>
+                            <li>충북대학교 - (2019.01.01 ~) </li>
+                            <li>전주비전대 - (2019.01.01 ~) </li>
+                            <li>국립목포대 - (2019.01.01 ~) </li>
+                            <li>부경대학교 - (2019.01.01 ~) </li>
+                            <li>동아대학교 - (2019.01.01 ~) </li>
+                        </ul>
+                        <li>교육<li>
+                        <ul>
+                            <li>부산진고</li>
+                            <li>거성중학교</li>
+                            <li>거제초등학교</li>
+                            <li>경성대학교</li>
+                            <li>수영it직업학교</li>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <img class="img-fluid" src="{% static 'single_pages/images/my_back.png' %}"
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Portfolio</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card" data-toggle="modal" data-target="#modal_number1">
+                        <img class="card-img-top" src="{% static 'single_pages/images/buddha.jpg' %}">
+                        <div class="card-body">
+                            <h5 class="card-title">파이썬으로 통계업무자동화</h5>
+                            <p>Python, Django, Pandas, 통계업무 자동화한 내용을 파이콘에서 발표</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card" data-toggle="modal" data-target="#modal_number2">
+                        <img class="card-img-top" src="{% static 'single_pages/images/buddha.jpg' %}">
+                        <div class="card-body">
+                            <h5 class="card-title">파이썬으로 통계업무자동화</h5>
+                            <p>Python, Django, Pandas, 통계업무 자동화한 내용을 파이콘에서 발표</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card" data-toggle="modal" data-target="#modal_number3">
+                        <img class="card-img-top" src="{% static 'single_pages/images/buddha.jpg' %}">
+                        <div class="card-body">
+                            <h5 class="card-title">파이썬으로 통계업무자동화</h5>
+                            <p>Python, Django, Pandas, 통계업무 자동화한 내용을 파이콘에서 발표</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_number1" tabindex="-1" role="dialog" aria-labelledby="modal_number1ModalLabel" aria-hidden="true">
+
+    
+
+    
+    <div class="fixed-bottom">
+        {% include 'myblog/footer.html' %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    </body>
 </html>
