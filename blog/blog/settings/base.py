@@ -11,33 +11,44 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, json
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-x6o82@8!ao)6v9pgp&qx#_hqp30%+kp_)6m-w!!d37p-#ben0v'
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-x6o82@8!ao)6v9pgp&qx#_hqp30%+kp_)6m-w!!d37p-#ben0v')
+
+secret_file = os.path.join(BASE_DIR, 'secrets.json')
+
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ.get('DEBUG',1))
+#DEBUG = int(os.environ.get('DEBUG',1))
 
-if os.environ.get('DJANGO_ALLOWED_HOSTS'):
-    ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
-else :
-    ALLOWED_HOSTS = []
-
-
+#if os.environ.get('DJANGO_ALLOWED_HOSTS'):
+#    ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
+#else :
+#    ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -91,20 +102,20 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-    'default': {
-        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.environ.get('SQL_DATABASE',os.path.join(BASE_DIR,'db.sqlite3')),
-        'USER': os.environ.get('SQL_USER','user'),
-        'PASSWORD': os.environ.get('SQL_PASSWORD','password'),
-        'HOST': os.environ.get('SQL_HOST','localhost'),
-        'PORT': os.environ.get('SQL_PORT','5432'),
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+    #'default': {
+    #    'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.postgresql'),
+    #    'NAME': os.environ.get('SQL_DATABASE',os.path.join(BASE_DIR,'db.sqlite3')),
+    #    'USER': os.environ.get('SQL_USER','user'),
+    #    'PASSWORD': os.environ.get('SQL_PASSWORD','password'),
+    #    'HOST': os.environ.get('SQL_HOST','localhost'),
+    #    'PORT': os.environ.get('SQL_PORT','5432'),
+    #}
+#}
 
 
 # Password validation
