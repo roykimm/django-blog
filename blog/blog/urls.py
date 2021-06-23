@@ -18,8 +18,15 @@ from django.urls import path, include
 
 from django.conf import settings
 from django.conf.urls.static import static
+from todo import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'tasks', views.TodoView, 'task')
+
 
 urlpatterns = [
+    path('api/', include(router.urls)),
     path('myblog/', include('myblog.urls')),
     path('admin/', admin.site.urls),
     path('markdownx/', include('markdownx.urls')),
