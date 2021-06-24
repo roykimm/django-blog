@@ -79,7 +79,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'blog.urls'
@@ -141,9 +141,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # whitelisting React port
-CORS_ORIGIN_WHITELIST = (
+CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-)
+    'http://localhost:3001',
+    'http://127.0.0.1:3001',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 
 # Internationalization
