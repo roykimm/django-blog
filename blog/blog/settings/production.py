@@ -10,7 +10,7 @@ DATABASES = {
         'NAME' : 'django_blog',
         'USER' : 'bella',
         'PASSWORD': 'bella',
-        'HOST' : '18.222.188.155',
+        'HOST' : 'gobella.kr',
         'PORT' : '5432'
     }
 }
