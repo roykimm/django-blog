@@ -4,5 +4,5 @@ db.sqlite3
 migrations/
 __pycache__/
 _media/
-_static/ 
+_static/
 secrets.json
