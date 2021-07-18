@@ -146,8 +146,19 @@ AUTH_PASSWORD_VALIDATORS = [
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'http://localhost:3001',
+    'http://127.0.0.1:3000',
     'http://127.0.0.1:3001',
-    'http://gobella.kr:3000'
+    'http://gobella.kr:3000',
+    'http://gobella.kr:3001',
+    'http://gobella.kr:3002',
+    'http://gobella.kr:3003',
+    'http://gobella.kr:3004',
+    'http://gobella.kr:3005',
+    'http://gobella.kr:3006',
+    'http://gobella.kr:3007',
+    'http://gobella.kr:3008',
+    'http://gobella.kr:3009',
+    'http://gobella.kr:3010',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
