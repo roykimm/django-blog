@@ -1,3 +1,7 @@
-현재진행 페이지 : 361
+운영 배포시 확인 사항
 
-도커 설치
+1. secrets_copy.json 파일명을 -> secrets.json 파일명으로 바꾸고 DB정보를 입력하여 준다.
+2. manage.py 파일에서 development -> productioin으로 수정
+3. google login redirect url 수정
+4. createsuperuser 확인
+5. social accounts application 확인
